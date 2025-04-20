@@ -1,0 +1,50 @@
+<!-- client_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Client Dashboard</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#book">Book Session</a>
+      <a href="#mySessions">My Sessions</a>
+    </nav>
+  </header>
+  <main>
+    <section id="book" class="card">
+      <h2>Book a Session</h2>
+      <form id="bookingForm">
+        <input type="date" required>
+        <select required>
+          <option>Private</option><option>Group</option><option>Semi-Private</option>
+        </select>
+        <button class="btn">Book</button>
+      </form>
+    </section>
+
+    <section id="mySessions" class="card">
+      <h2>My Sessions</h2>
+      <ul id="mySessionList">
+        <li>April 21, 2 PM – Group <button class="btn-small">Cancel</button></li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("bookingForm").onsubmit = function (e) {
+      e.preventDefault();
+      const date = this[0].value;
+      const type = this[1].value;
+      const li = document.createElement("li");
+      li.innerHTML = `${date} – ${type} <button class="btn-small">Cancel</button>`;
+      document.getElementById("mySessionList").appendChild(li);
+      this.reset();
+    };
+  </script>
+</body>
+</html>

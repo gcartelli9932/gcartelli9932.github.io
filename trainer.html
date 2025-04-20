@@ -1,0 +1,58 @@
+<!-- trainer_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trainer Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Trainer Dashboard</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#post">Post Availability</a>
+      <a href="#schedule">View Schedule</a>
+      <a href="#attendance">Take Attendance</a>
+    </nav>
+  </header>
+  <main>
+    <section id="post" class="card">
+      <h2>Post Availability</h2>
+      <form id="availabilityForm">
+        <input type="datetime-local" required>
+        <input type="number" placeholder="Duration (mins)" required>
+        <button type="submit" class="btn">Add Slot</button>
+      </form>
+      <ul id="slotsList"></ul>
+    </section>
+
+    <section id="schedule" class="card">
+      <h2>Your Schedule</h2>
+      <ul id="scheduleList">
+        <li>Mon 10 AM – Group</li>
+        <li>Wed 2 PM – Private</li>
+      </ul>
+    </section>
+
+    <section id="attendance" class="card">
+      <h2>Take Attendance</h2>
+      <label>John Doe <select>
+        <option>Present</option><option>Absent</option><option>Late</option>
+      </select></label>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("availabilityForm").onsubmit = function (e) {
+      e.preventDefault();
+      const time = this[0].value;
+      const duration = this[1].value;
+      const li = document.createElement("li");
+      li.textContent = `${time} (${duration} mins)`;
+      document.getElementById("slotsList").appendChild(li);
+      this.reset();
+    };
+  </script>
+</body>
+</html>
